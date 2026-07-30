@@ -1,10 +1,24 @@
-export function GlobeLegend() {
+import { ALL_LANDMARK_KINDS, LANDMARK_KIND_META } from '../../lib/moon/landmarkStyles';
+import type { LandmarkKind } from '../../lib/moon/landmarks';
+
+export function GlobeLegend({
+	activeKinds,
+	onToggle,
+}: {
+	activeKinds: ReadonlySet<LandmarkKind>;
+	onToggle: (kind: LandmarkKind) => void;
+}) {
 	return (
 		<div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-xs text-text-muted">
-			<div className="flex flex-wrap items-center gap-4">
-				<LegendItem color="#9ca3af" label="Cratère" />
-				<LegendItem color="#f2c94c" label="Site Apollo" />
-				<LegendItem color="#ff8a4c" label="Région candidate Artemis IV" />
+			<div className="flex flex-wrap items-center gap-2">
+				{ALL_LANDMARK_KINDS.map((kind) => (
+					<FilterToggle
+						key={kind}
+						kind={kind}
+						active={activeKinds.has(kind)}
+						onToggle={() => onToggle(kind)}
+					/>
+				))}
 			</div>
 			<p>
 				Imagerie : NASA LRO/LROC WAC (couleur) &amp; LOLA (relief), via le{' '}
@@ -22,11 +36,28 @@ export function GlobeLegend() {
 	);
 }
 
-function LegendItem({ color, label }: { color: string; label: string }) {
+function FilterToggle({
+	kind,
+	active,
+	onToggle,
+}: {
+	kind: LandmarkKind;
+	active: boolean;
+	onToggle: () => void;
+}) {
+	const { color, label } = LANDMARK_KIND_META[kind];
+
 	return (
-		<span className="flex items-center gap-2">
+		<button
+			type="button"
+			onClick={onToggle}
+			aria-pressed={active}
+			className={`flex items-center gap-2 rounded-full border px-2.5 py-1 transition-opacity ${
+				active ? 'border-border' : 'border-border opacity-40'
+			}`}
+		>
 			<span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
 			{label}
-		</span>
+		</button>
 	);
 }

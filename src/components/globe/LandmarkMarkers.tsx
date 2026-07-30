@@ -1,24 +1,23 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Html } from '@react-three/drei';
 import { LANDMARKS, type Landmark, type LandmarkKind } from '../../lib/moon/landmarks';
+import { LANDMARK_KIND_META } from '../../lib/moon/landmarkStyles';
 import { geoToVector3 } from '../../lib/moon/geoToVector3';
 import { MOON_RADIUS } from './MoonMesh';
 import { LandmarkTooltip } from './LandmarkTooltip';
 
-const MARKER_COLOR: Record<LandmarkKind, string> = {
-	crater: '#9ca3af',
-	apollo: '#f2c94c',
-	'artemis-candidate': '#ff8a4c',
-};
-
 const MARKER_RADIUS = MOON_RADIUS * 1.01;
 
-export function LandmarkMarkers() {
+export function LandmarkMarkers({ activeKinds }: { activeKinds: ReadonlySet<LandmarkKind> }) {
 	const [active, setActive] = useState<Landmark | null>(null);
+	const visibleLandmarks = useMemo(
+		() => LANDMARKS.filter((landmark) => activeKinds.has(landmark.kind)),
+		[activeKinds],
+	);
 
 	return (
 		<group>
-			{LANDMARKS.map((landmark) => {
+			{visibleLandmarks.map((landmark) => {
 				const position = geoToVector3(landmark.latitude, landmark.longitude, MARKER_RADIUS);
 				const isActive = active === landmark;
 
@@ -40,7 +39,7 @@ export function LandmarkMarkers() {
 						}}
 					>
 						<sphereGeometry args={[0.025, 8, 8]} />
-						<meshBasicMaterial color={MARKER_COLOR[landmark.kind]} />
+						<meshBasicMaterial color={LANDMARK_KIND_META[landmark.kind].color} />
 						{isActive && (
 							// No `distanceFactor`: with it, Html scales the overlay by
 							// world-unit distance, which blows it up hugely on this small

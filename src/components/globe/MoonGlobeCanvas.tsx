@@ -3,15 +3,16 @@ import { OrbitControls, Stars } from '@react-three/drei';
 import { MoonMesh } from './MoonMesh';
 import { LandmarkMarkers } from './LandmarkMarkers';
 import { ResponsiveCameraFit } from './ResponsiveCameraFit';
+import type { LandmarkKind } from '../../lib/moon/landmarks';
 
-export function MoonGlobeCanvas() {
+export function MoonGlobeCanvas({ activeKinds }: { activeKinds: ReadonlySet<LandmarkKind> }) {
 	return (
 		<Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
 			<ambientLight intensity={0.15} />
 			<directionalLight position={[5, 2, 5]} intensity={2} />
 			<Stars radius={50} depth={30} count={3000} factor={3} fade speed={0.5} />
 			<MoonMesh />
-			<LandmarkMarkers />
+			<LandmarkMarkers activeKinds={activeKinds} />
 			<ResponsiveCameraFit />
 			<OrbitControls enablePan={false} minDistance={3} maxDistance={20} />
 		</Canvas>
