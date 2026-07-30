@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { AppShell } from './components/layout/AppShell';
 import { AppLoader } from './components/layout/AppLoader';
 import { MoonPhaseCard } from './components/dashboard/MoonPhaseCard';
+import { FullMoonNameCard } from './components/dashboard/FullMoonNameCard';
 import { MoonDistanceCard } from './components/dashboard/MoonDistanceCard';
 import { MoonRiseSetCard } from './components/dashboard/MoonRiseSetCard';
 import { MoonOrbitCard } from './components/dashboard/MoonOrbitCard';
@@ -37,6 +38,7 @@ function App() {
 				transition={{ duration: 0.5, ease: 'easeOut' }}
 			>
 				<MoonPhaseCard snapshot={snapshot} />
+				<FullMoonNameCard snapshot={snapshot} />
 				<MoonDistanceCard snapshot={snapshot} />
 				<MoonRiseSetCard riseSet={snapshot.riseSet} geolocation={geolocation} />
 				<MoonOrbitCard snapshot={snapshot} />

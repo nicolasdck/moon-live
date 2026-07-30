@@ -3,12 +3,15 @@ import type { ApsisEvent, Coordinates, MoonSnapshot, RiseSetTimes } from '../../
 import {
 	APSIS_SEARCH_CHAIN_LIMIT,
 	AVERAGE_EARTH_MOON_DISTANCE_KM,
+	FULL_MOON_QUARTER_CHAIN_LIMIT,
+	FULL_MOON_SEARCH_LOOKBACK_DAYS,
 	RISE_SET_SEARCH_WINDOW_DAYS,
 	SYNODIC_MONTH_DAYS,
 } from './constants';
 
 const RISE_DIRECTION = 1;
 const SET_DIRECTION = -1;
+const FULL_MOON_QUARTER = 2;
 
 function getMoonAgeDays(phaseAngleDeg: number): number {
 	return (phaseAngleDeg / 360) * SYNODIC_MONTH_DAYS;
@@ -67,6 +70,37 @@ function getRiseSet(date: Date, coordinates: Coordinates): RiseSetTimes {
 	};
 }
 
+function findNearestFullMoon(date: Date): MoonSnapshot['nearestFullMoon'] {
+	const searchStart = new Date(date.getTime() - FULL_MOON_SEARCH_LOOKBACK_DAYS * 86_400_000);
+	let quarter = Astronomy.SearchMoonQuarter(searchStart);
+	let mostRecentFull: Date | undefined;
+	let nextFull: Date | undefined;
+
+	for (let i = 0; i < FULL_MOON_QUARTER_CHAIN_LIMIT && !nextFull; i++) {
+		if (quarter.quarter === FULL_MOON_QUARTER) {
+			const t = quarter.time.date;
+			if (t.getTime() <= date.getTime()) {
+				mostRecentFull = t;
+			} else {
+				nextFull = t;
+			}
+		}
+		quarter = Astronomy.NextMoonQuarter(quarter);
+	}
+
+	if (!mostRecentFull && !nextFull) {
+		throw new Error('Unable to resolve nearest full moon');
+	}
+	if (!mostRecentFull) return { date: nextFull!, isPast: false };
+	if (!nextFull) return { date: mostRecentFull, isPast: true };
+
+	const distanceToPast = date.getTime() - mostRecentFull.getTime();
+	const distanceToNext = nextFull.getTime() - date.getTime();
+	return distanceToPast <= distanceToNext
+		? { date: mostRecentFull, isPast: true }
+		: { date: nextFull, isPast: false };
+}
+
 function getTidalRange(phaseAngleDeg: number): MoonSnapshot['tidalRange'] {
 	const distanceFromSyzygy = Math.min(
 		Math.abs(phaseAngleDeg - 0),
@@ -108,5 +142,6 @@ export function computeMoonSnapshot(date: Date, coordinates: Coordinates): MoonS
 		riseSet,
 		gravityRelativeToAverage,
 		tidalRange: getTidalRange(eclipticPhaseDeg),
+		nearestFullMoon: findNearestFullMoon(date),
 	};
 }

@@ -31,4 +31,8 @@ export interface MoonSnapshot {
 	riseSet: RiseSetTimes;
 	gravityRelativeToAverage: number;
 	tidalRange: 'spring' | 'neap' | 'intermediate';
+	nearestFullMoon: {
+		date: Date;
+		isPast: boolean;
+	};
 }
