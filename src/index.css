@@ -26,19 +26,6 @@
 	--color-danger: #e2665f;
 }
 
-:root[data-theme='night'] {
-	--color-bg: #000000;
-	--color-bg-elevated: #0d0000;
-	--color-surface: #1a0303;
-	--color-border: #3a0808;
-	--color-text: #ff5a4d;
-	--color-text-muted: #a13a30;
-	--color-accent: #ff5a4d;
-	--color-accent-strong: #ff7a68;
-	--color-warn: #ff5a4d;
-	--color-danger: #ff5a4d;
-}
-
 html,
 body,
 #root {
@@ -53,7 +40,7 @@ body {
 		color 0.3s ease;
 }
 
-@keyframes helmet-spin {
+@keyframes loader-spin {
 	from {
 		transform: rotate(0deg);
 	}
@@ -62,22 +49,6 @@ body {
 	}
 }
 
-@keyframes visor-glint {
-	0%,
-	100% {
-		opacity: 0.15;
-		transform: translateX(-30%) translateY(-10%);
-	}
-	50% {
-		opacity: 0.55;
-		transform: translateX(30%) translateY(10%);
-	}
-}
-
-.animate-helmet-spin {
-	animation: helmet-spin 6s linear infinite;
-}
-
-.animate-visor-glint {
-	animation: visor-glint 2.4s ease-in-out infinite;
+.animate-loader-spin {
+	animation: loader-spin 6s linear infinite;
 }

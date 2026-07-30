@@ -4,7 +4,6 @@ const NAV_LINKS = [
 	{ to: '/', label: 'Dashboard' },
 	{ to: '/globe', label: '3D Map' },
 	{ to: '/asteroides', label: 'Asteroids' },
-	{ to: '/calendrier', label: 'Calendar' },
 	{ to: '/equilibre', label: 'Balance' },
 ];
 
