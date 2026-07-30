@@ -7,7 +7,7 @@ export function UpdatePrompt() {
 	if (!needRefresh && !offlineReady) return null;
 
 	return (
-		<div className="fixed inset-x-0 bottom-4 z-50 mx-auto flex w-fit max-w-[calc(100%-2rem)] items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-text shadow-2xl">
+		<div className="mx-auto flex w-fit max-w-[calc(100vw-2rem)] items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-text shadow-2xl">
 			{needRefresh ? (
 				<>
 					<RefreshCw size={18} className="shrink-0 text-accent" />
