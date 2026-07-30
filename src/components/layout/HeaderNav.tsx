@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 const NAV_LINKS = [
 	{ to: '/', label: 'Dashboard' },
 	{ to: '/globe', label: 'Globe 3D' },
+	{ to: '/asteroides', label: 'Astéroïdes' },
 ];
 
 export function HeaderNav() {

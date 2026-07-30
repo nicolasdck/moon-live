@@ -5,6 +5,7 @@ import { AppLoader } from './components/layout/AppLoader';
 import DashboardPage from './pages/DashboardPage';
 
 const GlobePage = lazy(() => import('./pages/GlobePage'));
+const AsteroidsPage = lazy(() => import('./pages/AsteroidsPage'));
 
 const INITIAL_LOAD_DELAY_MS = 600;
 
@@ -27,6 +28,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<DashboardPage />} />
 						<Route path="/globe" element={<GlobePage />} />
+						<Route path="/asteroides" element={<AsteroidsPage />} />
 					</Routes>
 				</Suspense>
 			</AppShell>
