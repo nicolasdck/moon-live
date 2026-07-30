@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { formatFullDate } from '../../lib/format';
 import { EVENT_ICON, getEventTitleAndDetail } from '../../lib/astro/eventPresentation';
 import type { CelestialEvent } from '../../types/events';
@@ -12,6 +13,7 @@ export function EventCard({ event }: { event: CelestialEvent }) {
 	const { title, detail } = getEventTitleAndDetail(event);
 	const Icon = EVENT_ICON[event.type];
 	const daysUntil = getDaysUntil(event.date);
+	const isEclipse = event.type === 'lunar-eclipse' || event.type === 'solar-eclipse';
 
 	return (
 		<article className="flex items-start gap-4 rounded-2xl border border-border bg-surface p-4">
@@ -27,6 +29,15 @@ export function EventCard({ event }: { event: CelestialEvent }) {
 				</div>
 				<p className="text-sm text-text-muted">{formatFullDate(event.date)}</p>
 				<p className="mt-1 text-sm text-text-muted">{detail}</p>
+				{isEclipse && (
+					<Link
+						to={`/eclipse?type=${event.type}&date=${encodeURIComponent(event.date.toISOString())}`}
+						state={{ event }}
+						className="mt-2 inline-block text-sm text-accent hover:underline"
+					>
+						Voir les circonstances locales
+					</Link>
+				)}
 			</div>
 		</article>
 	);

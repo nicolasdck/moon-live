@@ -4,6 +4,13 @@ export interface LunarEclipseEvent {
 	date: Date;
 	kind: 'penumbral' | 'partial' | 'total';
 	obscuration: number;
+	// Semi-durations (minutes) of each phase around `date` (the peak), as
+	// returned by astronomy-engine's SearchLunarEclipse — 0 if the eclipse
+	// never reaches that phase. Used to derive local begin/end circumstances
+	// without re-searching (see lib/astro/eclipseLocalCircumstances.ts).
+	sdPenumMinutes: number;
+	sdPartialMinutes: number;
+	sdTotalMinutes: number;
 }
 
 export interface SolarEclipseEvent {
