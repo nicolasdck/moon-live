@@ -13,36 +13,29 @@ export function NotificationToggle({
 	onDisable: () => void;
 }) {
 	if (support === 'unsupported') {
-		return;
+		return null;
 	}
 
 	return (
-		<div className="rounded-2xl border border-border bg-surface p-4">
-			<div className="flex flex-wrap items-center justify-between gap-3">
-				<div className="flex items-center gap-2">
-					{enabled ? (
-						<Bell size={18} className="text-accent" />
-					) : (
-						<BellOff size={18} className="text-text-muted" />
+		<div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/70 px-4 py-2 backdrop-blur-sm">
+			<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 text-xs">
+				<div className="flex items-center gap-2 text-text-muted">
+					{enabled ? <Bell size={14} className="text-accent" /> : <BellOff size={14} />}
+					<span>Rappels d'événements</span>
+					{support === 'denied' && (
+						<span className="text-warn" title="Autorisez les notifications dans les paramètres du navigateur pour ce site.">
+							— permission refusée
+						</span>
 					)}
-					<span className="text-sm font-medium text-text">
-						Rappels d'événements
-					</span>
 				</div>
 				<button
 					type="button"
 					onClick={enabled ? onDisable : onEnable}
-					className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-text transition-colors hover:border-accent"
+					className="rounded-full border border-border px-3 py-1 font-medium text-text transition-colors hover:border-accent"
 				>
 					{enabled ? 'Désactiver' : 'Activer'}
 				</button>
 			</div>
-			{support === 'denied' && (
-				<p className="mt-2 text-xs text-warn">
-					Permission refusée — autorisez les notifications dans les paramètres
-					du navigateur pour ce site.
-				</p>
-			)}
 		</div>
 	);
 }

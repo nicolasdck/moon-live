@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
 			tailwindcss(),
 			VitePWA({
 				registerType: 'prompt',
-				includeAssets: ['favicon.ico', 'moon-icon-master.svg'],
+				includeAssets: ['favicon.ico'],
 				manifest: {
 					id: '/',
 					name: 'Moon Live',
@@ -82,7 +82,7 @@ export default defineConfig(({ mode }) => {
 					],
 				},
 				workbox: {
-					globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
+					globPatterns: ['**/*.{js,css,html,svg,png,jpg,jpeg,ico,woff2}'],
 				},
 			}),
 		],

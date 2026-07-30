@@ -12,7 +12,7 @@ export default function CalendarPage() {
 	useEventReminders(events, enabled);
 
 	return (
-		<div className="flex flex-col gap-5">
+		<div className="flex flex-col gap-5 pb-14">
 			<div>
 				<h2 className="text-xl font-semibold text-text">
 					Calendrier & événements
@@ -22,14 +22,14 @@ export default function CalendarPage() {
 					calculées localement.
 				</p>
 			</div>
+			<NextEventCountdown event={events[0]} />
+			<EventTimeline events={events} />
 			<NotificationToggle
 				enabled={enabled}
 				support={support}
 				onEnable={enable}
 				onDisable={disable}
 			/>
-			<NextEventCountdown event={events[0]} />
-			<EventTimeline events={events} />
 		</div>
 	);
 }

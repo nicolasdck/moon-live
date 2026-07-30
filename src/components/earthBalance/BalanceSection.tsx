@@ -17,15 +17,16 @@ export function BalanceSection({
 
 	return (
 		<motion.section
+			id={section.id}
 			initial={{ opacity: 0, y: 24 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.3 }}
 			transition={{ duration: 0.5, ease: 'easeOut' }}
-			className={`flex flex-col items-center gap-6 rounded-2xl border border-border bg-surface p-6 sm:p-8 md:flex-row ${
+			className={`flex scroll-mt-6 flex-col items-center gap-6 rounded-2xl border border-border bg-surface p-6 sm:p-8 md:flex-row ${
 				reversed ? 'md:flex-row-reverse' : ''
 			}`}
 		>
-			<div className="flex w-full flex-shrink-0 items-center justify-center md:w-56">
+			<div className="flex w-full shrink-0 items-center justify-center md:w-56">
 				{visual ?? (
 					<div className="flex h-28 w-28 items-center justify-center rounded-full bg-bg-elevated text-accent">
 						<Icon size={44} />

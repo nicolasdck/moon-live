@@ -1,5 +1,6 @@
 import { BalanceHero } from '../components/earthBalance/BalanceHero';
 import { BalanceSection } from '../components/earthBalance/BalanceSection';
+import { BalanceTableOfContents } from '../components/earthBalance/BalanceTableOfContents';
 import { AxialTiltVisual } from '../components/earthBalance/AxialTiltVisual';
 import { BALANCE_SECTIONS } from '../components/earthBalance/content';
 
@@ -7,6 +8,7 @@ export default function EarthBalancePage() {
 	return (
 		<div className="flex flex-col gap-5">
 			<BalanceHero />
+			<BalanceTableOfContents sections={BALANCE_SECTIONS} />
 			{BALANCE_SECTIONS.map((section, index) => (
 				<BalanceSection
 					key={section.id}

@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import { MoonMesh } from './MoonMesh';
 import { LandmarkMarkers } from './LandmarkMarkers';
+import { ResponsiveCameraFit } from './ResponsiveCameraFit';
 
 export function MoonGlobeCanvas() {
 	return (
@@ -11,7 +12,8 @@ export function MoonGlobeCanvas() {
 			<Stars radius={50} depth={30} count={3000} factor={3} fade speed={0.5} />
 			<MoonMesh />
 			<LandmarkMarkers />
-			<OrbitControls enablePan={false} minDistance={3} maxDistance={9} />
+			<ResponsiveCameraFit />
+			<OrbitControls enablePan={false} minDistance={3} maxDistance={20} />
 		</Canvas>
 	);
 }

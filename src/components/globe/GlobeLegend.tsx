@@ -7,16 +7,16 @@ export function GlobeLegend() {
 				<LegendItem color="#ff8a4c" label="Région candidate Artemis IV" />
 			</div>
 			<p>
-				Texture lunaire : Solar System Scope (
+				Imagerie : NASA LRO/LROC WAC (couleur) &amp; LOLA (relief), via le{' '}
 				<a
-					href="https://www.solarsystemscope.com/textures/"
+					href="https://svs.gsfc.nasa.gov/4720/"
 					target="_blank"
 					rel="noreferrer"
 					className="underline hover:text-text"
 				>
-					solarsystemscope.com/textures
-				</a>
-				), CC BY 4.0
+					CGI Moon Kit
+				</a>{' '}
+				(NASA SVS, domaine public)
 			</p>
 		</div>
 	);
@@ -25,10 +25,7 @@ export function GlobeLegend() {
 function LegendItem({ color, label }: { color: string; label: string }) {
 	return (
 		<span className="flex items-center gap-2">
-			<span
-				className="h-2.5 w-2.5 rounded-full"
-				style={{ backgroundColor: color }}
-			/>
+			<span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
 			{label}
 		</span>
 	);
