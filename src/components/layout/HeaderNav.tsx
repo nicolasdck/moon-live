@@ -5,6 +5,7 @@ const NAV_LINKS = [
 	{ to: '/globe', label: '3D Map' },
 	{ to: '/asteroides', label: 'Asteroids' },
 	{ to: '/calendrier', label: 'Calendar' },
+	{ to: '/equilibre', label: 'Balance' },
 ];
 
 export function HeaderNav() {
