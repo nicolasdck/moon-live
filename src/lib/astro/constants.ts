@@ -14,6 +14,17 @@ export const FULL_MOON_QUARTER_CHAIN_LIMIT = 6;
 
 export const FULL_MOON_DISPLAY_WINDOW_DAYS = 3;
 
+export const SUPERMOON_MAX_DISTANCE_KM = 360_000;
+
+export const EVENT_LOOKAHEAD_COUNT = 6;
+
+// Supermoons (perigee full moons) cluster a few times a year rather than
+// every month, so the search needs a wide window (~2 years of quarters) to
+// reliably surface several upcoming ones.
+export const SUPERMOON_SEARCH_CHAIN_LIMIT = 100;
+
+export const NOTIFICATION_WINDOW_HOURS = 48;
+
 export const DEFAULT_OBSERVER_LOCATION = {
 	latitude: 48.8566,
 	longitude: 2.3522,

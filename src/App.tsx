@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 
 const GlobePage = lazy(() => import('./pages/GlobePage'));
 const AsteroidsPage = lazy(() => import('./pages/AsteroidsPage'));
+const CalendarPage = lazy(() => import('./pages/CalendarPage'));
 
 const INITIAL_LOAD_DELAY_MS = 600;
 
@@ -29,6 +30,7 @@ function App() {
 						<Route path="/" element={<DashboardPage />} />
 						<Route path="/globe" element={<GlobePage />} />
 						<Route path="/asteroides" element={<AsteroidsPage />} />
+						<Route path="/calendrier" element={<CalendarPage />} />
 					</Routes>
 				</Suspense>
 			</AppShell>

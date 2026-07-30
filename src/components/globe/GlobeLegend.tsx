@@ -5,7 +5,6 @@ export function GlobeLegend() {
 				<LegendItem color="#9ca3af" label="Cratère" />
 				<LegendItem color="#f2c94c" label="Site Apollo" />
 				<LegendItem color="#ff8a4c" label="Région candidate Artemis IV" />
-				<span>Glisser pour tourner · Molette pour zoomer</span>
 			</div>
 			<p>
 				Texture lunaire : Solar System Scope (
@@ -26,7 +25,10 @@ export function GlobeLegend() {
 function LegendItem({ color, label }: { color: string; label: string }) {
 	return (
 		<span className="flex items-center gap-2">
-			<span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
+			<span
+				className="h-2.5 w-2.5 rounded-full"
+				style={{ backgroundColor: color }}
+			/>
 			{label}
 		</span>
 	);

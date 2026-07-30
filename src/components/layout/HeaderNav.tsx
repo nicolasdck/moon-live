@@ -2,21 +2,24 @@ import { NavLink } from 'react-router-dom';
 
 const NAV_LINKS = [
 	{ to: '/', label: 'Dashboard' },
-	{ to: '/globe', label: 'Globe 3D' },
-	{ to: '/asteroides', label: 'Astéroïdes' },
+	{ to: '/globe', label: '3D Map' },
+	{ to: '/asteroides', label: 'Asteroids' },
+	{ to: '/calendrier', label: 'Calendar' },
 ];
 
 export function HeaderNav() {
 	return (
-		<nav className="flex items-center gap-2">
+		<nav className="flex items-center justify-center gap-1">
 			{NAV_LINKS.map((link) => (
 				<NavLink
 					key={link.to}
 					to={link.to}
 					end={link.to === '/'}
 					className={({ isActive }) =>
-						`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-							isActive ? 'bg-surface text-accent-strong' : 'text-text-muted hover:text-text'
+						`rounded-full text-center px-3 py-2 text-sm font-medium transition-colors ${
+							isActive
+								? 'bg-surface text-accent-strong'
+								: 'text-text-muted hover:text-text'
 						}`
 					}
 				>

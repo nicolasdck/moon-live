@@ -16,3 +16,9 @@ export function formatTime(date: Date | null): string {
 export function formatDayMonth(date: Date): string {
 	return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' }).format(date);
 }
+
+export function formatFullDate(date: Date): string {
+	return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+		date,
+	);
+}

@@ -9,7 +9,10 @@ function getFeedDateRange(): { start: string; end: string } {
 	return { start: toISODate(start), end: toISODate(end) };
 }
 
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
+export default async function handler(
+	_req: VercelRequest,
+	res: VercelResponse,
+) {
 	const { start, end } = getFeedDateRange();
 	const apiKey = process.env.NASA_API_KEY ?? 'DEMO_KEY';
 	const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${start}&end_date=${end}&api_key=${apiKey}`;
@@ -19,9 +22,13 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 		const body = await upstream.text();
 
 		if (!upstream.ok) {
+			const message =
+				upstream.status === 429
+					? "Limite de requêtes NASA atteinte (clé DEMO_KEY : 30/heure, 50/jour). Réessayez dans quelques minutes."
+					: `NASA NeoWs a répondu avec le statut ${upstream.status}.`;
 			res.status(upstream.status >= 500 ? 502 : upstream.status).json({
 				error: 'nasa_api_error',
-				message: `NASA NeoWs a répondu avec le statut ${upstream.status}.`,
+				message,
 			});
 			return;
 		}
