@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import { getUpcomingEvents } from '../lib/astro/celestialEvents';
 import { useNotificationPreference } from '../hooks/useNotificationPreference';
 import { useEventReminders } from '../hooks/useEventReminders';
@@ -16,14 +18,23 @@ export default function CalendarPage() {
 
 	return (
 		<div className="flex flex-col gap-5 pb-14">
-			<div>
-				<h2 className="text-xl font-semibold text-text">
-					Calendrier & événements
-				</h2>
-				<p className="text-sm text-text-muted">
-					Prochaines éclipses lunaires, éclipses solaires et super lunes —
-					calculées localement.
-				</p>
+			<div className="flex items-start justify-between gap-3">
+				<div>
+					<h2 className="text-xl font-semibold text-text">
+						Calendrier & événements
+					</h2>
+					<p className="text-sm text-text-muted">
+						Prochaines éclipses lunaires, éclipses solaires et super lunes —
+						calculées localement.
+					</p>
+				</div>
+				<Link
+					to="/lune-annee"
+					className="flex shrink-0 items-center gap-2 rounded-full border border-accent-strong px-3 py-1.5 text-sm font-medium text-accent-strong transition-colors hover:bg-accent-strong hover:text-bg"
+				>
+					<Sparkles size={14} />
+					Stats annuelles
+				</Link>
 			</div>
 			<CalendarViewSwitcher mode={viewMode} onChange={setViewMode} />
 			{viewMode === 'liste' ? (

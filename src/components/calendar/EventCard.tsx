@@ -14,6 +14,7 @@ export function EventCard({ event }: { event: CelestialEvent }) {
 	const Icon = EVENT_ICON[event.type];
 	const daysUntil = getDaysUntil(event.date);
 	const isEclipse = event.type === 'lunar-eclipse' || event.type === 'solar-eclipse';
+	const isSupermoon = event.type === 'supermoon';
 
 	return (
 		<article className="flex items-start gap-4 rounded-2xl border border-border bg-surface p-4">
@@ -36,6 +37,14 @@ export function EventCard({ event }: { event: CelestialEvent }) {
 						className="mt-2 inline-block text-sm text-accent hover:underline"
 					>
 						Voir les circonstances locales
+					</Link>
+				)}
+				{isSupermoon && (
+					<Link
+						to={`/lune-annee?annee=${event.date.getFullYear()}`}
+						className="mt-2 inline-block text-sm text-accent hover:underline"
+					>
+						Voir les statistiques de l'année
 					</Link>
 				)}
 			</div>

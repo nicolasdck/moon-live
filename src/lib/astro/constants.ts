@@ -16,12 +16,22 @@ export const FULL_MOON_DISPLAY_WINDOW_DAYS = 3;
 
 export const SUPERMOON_MAX_DISTANCE_KM = 360_000;
 
+// Symmetric to SUPERMOON_MAX_DISTANCE_KM around the average distance, close
+// to the mean apogee (~405 500 km) — a common convention, not an official
+// IAU threshold (there isn't one for either super or micro moons).
+export const MICROMOON_MIN_DISTANCE_KM = 405_000;
+
 export const EVENT_LOOKAHEAD_COUNT = 6;
 
 // Supermoons (perigee full moons) cluster a few times a year rather than
 // every month, so the search needs a wide window (~2 years of quarters) to
 // reliably surface several upcoming ones.
 export const SUPERMOON_SEARCH_CHAIN_LIMIT = 100;
+
+// A calendar year holds ~48-50 quarters total (all 4 kinds chained, not just
+// full moons) — margin above that to safely enumerate every full moon of a
+// given year without truncating near year-end.
+export const YEAR_QUARTER_CHAIN_LIMIT = 60;
 
 export const NOTIFICATION_WINDOW_HOURS = 48;
 

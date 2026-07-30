@@ -10,6 +10,7 @@ const CalendarPage = lazy(() => import('./pages/CalendarPage'));
 const EarthBalancePage = lazy(() => import('./pages/EarthBalancePage'));
 const ApodPage = lazy(() => import('./pages/ApodPage'));
 const EclipseDetailPage = lazy(() => import('./pages/EclipseDetailPage'));
+const AnnualMoonStatsPage = lazy(() => import('./pages/AnnualMoonStatsPage'));
 
 const INITIAL_LOAD_DELAY_MS = 600;
 
@@ -37,6 +38,7 @@ function App() {
 						<Route path="/equilibre" element={<EarthBalancePage />} />
 						<Route path="/apod" element={<ApodPage />} />
 						<Route path="/eclipse" element={<EclipseDetailPage />} />
+						<Route path="/lune-annee" element={<AnnualMoonStatsPage />} />
 					</Routes>
 				</Suspense>
 			</AppShell>
