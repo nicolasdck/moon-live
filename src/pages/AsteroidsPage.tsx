@@ -1,7 +1,7 @@
 import { useAsteroidFeed } from '../hooks/useAsteroidFeed';
 import { AsteroidsSummary } from '../components/asteroids/AsteroidsSummary';
 import { AsteroidCard } from '../components/asteroids/AsteroidCard';
-import { AsteroidsErrorState } from '../components/asteroids/AsteroidsErrorState';
+import { ServiceErrorState } from '../components/shared/ServiceErrorState';
 
 export default function AsteroidsPage() {
 	const { status, asteroids, error, lastFetchedAt, refresh } = useAsteroidFeed();
@@ -9,7 +9,7 @@ export default function AsteroidsPage() {
 
 	if (status === 'error' && asteroids.length === 0) {
 		return (
-			<AsteroidsErrorState
+			<ServiceErrorState
 				message={error ?? 'Une erreur est survenue.'}
 				onRetry={refresh}
 				isRetrying={isRefreshing}

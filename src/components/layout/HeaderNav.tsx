@@ -9,7 +9,7 @@ const NAV_LINKS = [
 
 export function HeaderNav() {
 	return (
-		<nav className="flex items-center justify-center gap-1">
+		<nav className="w-full flex items-center justify-center gap-1">
 			{NAV_LINKS.map((link) => (
 				<NavLink
 					key={link.to}

@@ -1,19 +1,27 @@
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 
-export function AsteroidsErrorState({
+export function ServiceErrorState({
+	title = 'Service NASA temporairement indisponible',
 	message,
 	onRetry,
 	isRetrying,
+	compact = false,
 }: {
+	title?: string;
 	message: string;
 	onRetry: () => void;
 	isRetrying: boolean;
+	compact?: boolean;
 }) {
 	return (
-		<div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-surface p-8 text-center">
-			<AlertTriangle size={32} className="text-warn" />
+		<div
+			className={`flex flex-col items-center gap-4 rounded-2xl border border-border bg-surface text-center ${
+				compact ? 'p-5' : 'p-8'
+			}`}
+		>
+			<AlertTriangle size={compact ? 24 : 32} className="text-warn" />
 			<div>
-				<p className="font-semibold text-text">Service NASA temporairement indisponible</p>
+				<p className="font-semibold text-text">{title}</p>
 				<p className="mt-1 text-sm text-text-muted">{message}</p>
 			</div>
 			<button

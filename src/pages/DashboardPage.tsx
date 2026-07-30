@@ -6,6 +6,7 @@ import { MoonRiseSetCard } from '../components/dashboard/MoonRiseSetCard';
 import { MoonOrbitCard } from '../components/dashboard/MoonOrbitCard';
 import { EarthMoonInteractionsCard } from '../components/dashboard/EarthMoonInteractionsCard';
 import { GeolocationPrompt } from '../components/dashboard/GeolocationPrompt';
+import { ApodTeaserCard } from '../components/apod/ApodTeaserCard';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useMoonData } from '../hooks/useMoonData';
 
@@ -27,6 +28,7 @@ export default function DashboardPage() {
 				<MoonDistanceCard snapshot={snapshot} />
 				<MoonRiseSetCard riseSet={snapshot.riseSet} geolocation={geolocation} />
 				<MoonOrbitCard snapshot={snapshot} />
+				<ApodTeaserCard />
 				<div className="sm:col-span-2">
 					<EarthMoonInteractionsCard snapshot={snapshot} />
 				</div>

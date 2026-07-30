@@ -10,6 +10,10 @@ function getNeoFeedPath(apiKey: string): string {
 	return `/neo/rest/v1/feed?start_date=${toISODate(start)}&end_date=${toISODate(end)}&api_key=${apiKey}`;
 }
 
+function getApodPath(apiKey: string): string {
+	return `/planetary/apod?api_key=${apiKey}`;
+}
+
 export default defineConfig(({ mode }) => {
 	// Empty prefix loads all env vars (not just VITE_-prefixed ones) from
 	// .env.local, since NASA_API_KEY is server-only and must never reach the client.
@@ -25,6 +29,11 @@ export default defineConfig(({ mode }) => {
 					target: 'https://api.nasa.gov',
 					changeOrigin: true,
 					rewrite: () => getNeoFeedPath(nasaApiKey),
+				},
+				'/api/apod': {
+					target: 'https://api.nasa.gov',
+					changeOrigin: true,
+					rewrite: () => getApodPath(nasaApiKey),
 				},
 			},
 		},
